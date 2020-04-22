@@ -52,18 +52,19 @@ def main():
 
     for idx in range(len(image_files)): 
         while True:     
-            t.sleep(cfg.ASK_FOR_PROCESS)
+            t.sleep(cfg.ASK_FOR_PROCESS) # waits according to our global variable
             get_response = auth.detect_result(api['detect'] + \
                                 add_url['send_image'] + token     + \
                                 add_url['get_response'] + session_ids[idx], \
                                 headers)
             
-            if get_response['session']['processed'] == 1:
-                get_responses.append(get_response)
+            if get_response['session']['processed'] == 1:  # if image has been processed
+                get_responses.append(get_response)         # --> go to the next image session
                 total_time.append(get_response['session']['detectionTime'])    
                 break
     
     log('All images have been successfully processed')
+    log(f'Total number of images is {len(image_files)}')
     log(f'Total time of detection is {sum(total_time)}')
     log(f'Mean time of detection on each image is {sum(total_time)/len(image_files)}')
 
