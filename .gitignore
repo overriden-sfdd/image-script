@@ -130,7 +130,4 @@ dmypy.json
 
 
 # Image files
-*.png
-*.gif
-*.jpg
 *.zip
